@@ -6,15 +6,15 @@ public class BLKits {
 	
 	private ArrayList<String> ids;
 	private ArrayList<String> names;
-	private ArrayList<Integer> qtys;
+	private ArrayList<Double> qtys;
 
 	public BLKits(){
 		ids = new ArrayList<String>();
 		names = new ArrayList<String>();
-		qtys = new ArrayList<Integer>();
+		qtys = new ArrayList<Double>();
 	}
 	
-	public void addKit(String id, String name, int qty){
+	public void addKit(String id, String name, double qty){
 		int pos = ids.indexOf(id);
 		if(pos!=-1){
 			System.out.println("UPDATING KIT");
@@ -37,7 +37,7 @@ public class BLKits {
 	
 	public ArrayList<String> getKits(){
 		ArrayList<String> result = new ArrayList<String>();
-		if(ids.size()==1 && qtys.get(0)==1){
+		if(ids.size()==1){
 			result.add("из компл. " + names.get(0));
 			return result;
 		}

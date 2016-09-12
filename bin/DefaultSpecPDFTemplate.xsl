@@ -74,9 +74,13 @@
            <!--fo:block-container border-color="black" border-right-style="solid" border-right="0.3mm" position="absolute" top="5mm" bottom="5mm" left="0mm" right="0mm">
              <fo:block/>
            </fo:block-container-->
-           <fo:block-container border-color="black" border-right-style="solid" border-right="0.3mm" position="absolute" top="5mm" bottom="5mm" left="0mm" right="-15mm+0.15mm">
-             <fo:block/>
-           </fo:block-container>
+           <!--fo:block-container border-color="black" border-right-style="solid" border-right="0.3mm" position="absolute" top="5mm" bottom="5mm" left="0mm" right="-15mm+0.15mm">
+             <fo:block>TEXT</fo:block>
+           </fo:block-container-->
+		   <fo:block-container position="absolute" top="5mm" bottom="5mm" left="5mm" right="0mm" reference-orientation="90">
+		     <!-- fo:block font-style="normal" font-size="2.18mm"><xsl:value-of select="root/Ip_data/@Ip_classification"/></fo:block -->
+			 <fo:block padding-top="-2mm" background-color="green" font-family="arial" text-align="center" font-style="normal" font-size="3mm">TEXT</fo:block>
+		   </fo:block-container>
            <fo:block-container position="absolute"  reference-orientation="90"  top="5mm" left="8mm" height="12mm" width="114mm">
                 <xsl:call-template name="Add_minor_stamp">
                    <xsl:with-param name="PervPrimen" select="root/Izdelie_osnovnai_nadpis/@PERVPRIM"/>
@@ -408,6 +412,8 @@
           <fo:block>
             <xsl:if test="contains($font,'underline')"> <xsl:attribute name="text-decoration">underline</xsl:attribute></xsl:if>
             <xsl:if test="contains($font,'bold')"> <xsl:attribute name="font-weight">bold</xsl:attribute></xsl:if>
+			<xsl:if test="contains($font,'italic')"> <xsl:attribute name="font-style">italic</xsl:attribute></xsl:if>
+			<xsl:if test="contains($col/@warning,'true')"> <xsl:attribute name="color">red</xsl:attribute></xsl:if>
             
 			<!--xsl:if test="contains($font,'bold')"> <xsl:attribute name="font-weight">bold</xsl:attribute></xsl:if-->
 			
@@ -655,7 +661,7 @@
 
                 <fo:table-row height='from-parent(height)'>
                   <!-- Доп. проверяющий -->
-				  <fo:table-cell border-width="0.5mm" border-style="solid" number-columns-spanned="2"><fo:block>Т.контр.</fo:block></fo:table-cell>
+				  <fo:table-cell border-width="0.5mm" border-style="solid" number-columns-spanned="2"><fo:block><xsl:value-of select="$AddCheckerPost"/></fo:block></fo:table-cell>
                   <!-- Spanned cells number-columns-spanned="2" -->
                   <fo:table-cell border-width="0.5mm" border-style="solid"><fo:block font-size="2.5mm"><xsl:value-of select="$AddChecker"/></fo:block></fo:table-cell>
                   <fo:table-cell border-width="0.5mm" border-style="solid"><fo:block/></fo:table-cell>
@@ -728,7 +734,7 @@
                  </fo:table-row>
                  <fo:table-row  height="6.5mm" border-width="0.5mm">
                    <fo:table-cell wrap-option="no-wrap" border-width='from-parent(border-width)' border-style="solid"><fo:block/></fo:table-cell>
-                   <fo:table-cell wrap-option="no-wrap" border-width='from-parent(border-width)' border-style="solid"><fo:block text-align="center" font-size="3.0mm" margin-top="1.8mm" margin-bottom="0.75mm"><xsl:value-of select="$PervPrimen"/></fo:block></fo:table-cell>
+                   <fo:table-cell wrap-option="no-wrap" border-width='from-parent(border-width)' border-style="solid"><fo:block text-align="center" font-size="5.0mm" margin-top="0.25mm" margin-bottom="0.25mm"><xsl:value-of select="$PervPrimen"/></fo:block></fo:table-cell>
                  </fo:table-row>
               </fo:table-body>
     </fo:table>

@@ -22,7 +22,7 @@ public class BlockLine {
 		private String position = "";
 		private String id = "";
 		private ArrayList<String> name = null;
-		private float quantity = 0f;
+		private double quantity = 0;
 		
 		public BlockLineAttributes(){
 			this.format = new BLFormat("");
@@ -52,7 +52,7 @@ public class BlockLine {
 			if(this.kits==null)	this.kits = new BLKits();
 		}
 		
-		public void addKit(String id, String name, int qty){
+		public void addKit(String id, String name, double qty){
 			if(kits==null) this.kits = new BLKits();
 			this.kits.addKit(id, name, qty);
 		}
@@ -79,11 +79,11 @@ public class BlockLine {
 		}
 		
 		public void setQuantity(String quantity) {
-			this.quantity = "".equals(quantity) ? 1 : Float.parseFloat(quantity);
+			this.quantity = "".equals(quantity) ? 1 : Double.parseDouble(quantity);
 		}
 		
 		public void addQuantity(String quantity){
-			this.quantity = this.quantity + ("".equals(quantity) ? 1 : Float.parseFloat(quantity));
+			this.quantity = this.quantity + ("".equals(quantity) ? 1 : Double.parseDouble(quantity));
 		}
 		
 		public BLFormat getFormat() {
@@ -101,7 +101,7 @@ public class BlockLine {
 		public ArrayList<String> getName() {
 			return name;
 		}
-		public float getQuantity() {
+		public double getQuantity() {
 			return quantity;
 		}
 		public BLRemark getRemark() {
@@ -116,7 +116,7 @@ public class BlockLine {
 				case POSITION: return position;
 				case ID: return id;
 				case NAME: return Arrays.toString(name.toArray());
-				case QUANTITY: return quantity==0?" ":(quantity%1==0) ? Integer.toString((int)quantity) : Float.toString(quantity);
+				case QUANTITY: return quantity==0?" ":(quantity%1==0) ? Integer.toString((int)quantity) : Double.toString(quantity);
 				case REMARK: return remark.toString();
 			}
 			return "";

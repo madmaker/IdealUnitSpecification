@@ -17,7 +17,9 @@
 				<font kerning="yes" embed-url="file:///c:/windows/fonts/calibrib.ttf">
                     <font-triplet name="arial" style="normal" weight="bold"/>
                 </font>
-                				
+                <font kerning="yes" embed-url="file:///c:/windows/fonts/calibriz.ttf">
+                    <font-triplet name="arial" style="italic" weight="bold"/>
+                </font>			
 			</fonts>
 			<!--fonts>
 				<font kerning="yes" embed-url="file:///c:/windows/fonts/gostb.ttf">
