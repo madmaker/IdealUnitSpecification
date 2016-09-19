@@ -7,20 +7,20 @@ public class BLKits {
 	private ArrayList<String> ids;
 	private ArrayList<String> names;
 	private ArrayList<Double> qtys;
+	private double totalQuantity;
 
 	public BLKits(){
 		ids = new ArrayList<String>();
 		names = new ArrayList<String>();
 		qtys = new ArrayList<Double>();
+		totalQuantity = 0;
 	}
 	
 	public void addKit(String id, String name, double qty){
 		int pos = ids.indexOf(id);
 		if(pos!=-1){
-			System.out.println("UPDATING KIT");
 			qtys.set(pos, qtys.get(pos)+qty); 
 		} else {
-			System.out.println("NEW KIT");
 			ids.add(id);
 			names.add(name);
 			qtys.add(qty);
@@ -37,14 +37,17 @@ public class BLKits {
 	
 	public ArrayList<String> getKits(){
 		ArrayList<String> result = new ArrayList<String>();
-		if(ids.size()==1){
+		if(ids.size()==1 && totalQuantity==qtys.get(0)){
 			result.add("из компл. " + names.get(0));
 			return result;
 		}
 		for(int i = 0; i < ids.size(); i++){
 			result.add(qtys.get(i)+" шт. из компл. " + names.get(i));
-			System.out.println(qtys.get(i)+" шт. из компл. " + names.get(i));
 		}
 		return result;
+	}
+	
+	public void setTotalQuantity(double quantity){
+		this.totalQuantity = quantity;
 	}
 }

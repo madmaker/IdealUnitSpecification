@@ -1,4 +1,5 @@
-﻿<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
                       xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:fox="http://xml.apache.org/fop/extensions"
                       xmlns:xi="http://www.w3.org/2001/Xinclude" xmlns:foa="http://fabio"
                       xmlns:xalan="org.apache.xalan.lib.Extensions" xmlns:redirect="org.apache.xalan.lib.Redirect"
@@ -314,6 +315,7 @@
 
 <xsl:template match="Occurrence">
        <fo:table-row   height='from-parent(height)' border-width='from-parent(border-width)'>
+	   <xsl:variable name="merge" select="@merge"/>
        
        <xsl:if test="(parent::Block[@end_page='false']) or (position()!=1)">
         <xsl:attribute name="keep-with-previous">always</xsl:attribute>
@@ -340,20 +342,40 @@
                   <xsl:with-param name="cell_width">8mm</xsl:with-param>
                 </xsl:call-template>
           </fo:table-cell>
-          <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-start="2mm">
-                <xsl:call-template name="Occurrence-attrs">
-                  <xsl:with-param name="col" select="Col_4"/>
-                  <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_4"/></xsl:with-param>
-                  <xsl:with-param name="cell_width">70mm</xsl:with-param>
-                </xsl:call-template>
-          </fo:table-cell>
-          <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-start="2mm">
-                <xsl:call-template name="Occurrence-attrs">
-                  <xsl:with-param name="col" select="Col_5"/>
-                  <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_5"/></xsl:with-param>
-                  <xsl:with-param name="cell_width">63mm</xsl:with-param>         
-                </xsl:call-template>    
-          </fo:table-cell>
+		  <!--xsl:choose>
+			  <xsl:when test="contains($merge,'true')">
+				  <fo:table-cell border-width='from-parent(border-width)' background-color="red" border-style="solid" wrap-option="no-wrap" padding-start="2mm">
+						<xsl:call-template name="Occurrence-attrs">
+						  <xsl:with-param name="col" select="Col_4"/>
+						  <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_4"/></xsl:with-param>
+						  <xsl:with-param name="cell_width">123mm</xsl:with-param>
+						</xsl:call-template>
+				  </fo:table-cell>
+				  <fo:table-cell border-width='from-parent(border-width)' background-color="blue" border-style="solid" wrap-option="no-wrap" padding-start="2mm">
+						<xsl:call-template name="Occurrence-attrs">
+						  <xsl:with-param name="col" select="Col_5"/>
+						  <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_5"/></xsl:with-param>
+						  <xsl:with-param name="cell_width">10mm</xsl:with-param>         
+						</xsl:call-template>    
+				  </fo:table-cell>
+			  </xsl:when>
+			  <xsl:otherwise-->
+					<fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-start="2mm">
+						<xsl:call-template name="Occurrence-attrs">
+						  <xsl:with-param name="col" select="Col_4"/>
+						  <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_4"/></xsl:with-param>
+						  <xsl:with-param name="cell_width">70mm</xsl:with-param>
+						</xsl:call-template>
+				  </fo:table-cell>
+				  <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-start="2mm">
+						<xsl:call-template name="Occurrence-attrs">
+						  <xsl:with-param name="col" select="Col_5"/>
+						  <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_5"/></xsl:with-param>
+						  <xsl:with-param name="cell_width">63mm</xsl:with-param>         
+						</xsl:call-template>    
+				  </fo:table-cell>
+			  <!--/xsl:otherwise>
+		  </xsl:choose-->
           <!--fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-end="1.5mm"-->
 		  <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap">
                 <xsl:call-template name="Occurrence-attrs">
@@ -386,8 +408,10 @@
           <fo:block>
             <xsl:if test="contains($font,'underline')"> <xsl:attribute name="text-decoration">underline</xsl:attribute></xsl:if>
             <xsl:if test="contains($font,'bold')"> <xsl:attribute name="font-weight">bold</xsl:attribute></xsl:if>
+			<xsl:if test="contains($font,'italic')"> <xsl:attribute name="font-style">italic</xsl:attribute></xsl:if>
+			<xsl:if test="contains($col/@warning,'true')"> <xsl:attribute name="color">red</xsl:attribute></xsl:if>
             
-			<xsl:if test="contains($font,'bold')"> <xsl:attribute name="font-weight">bold</xsl:attribute></xsl:if>
+			<!--xsl:if test="contains($font,'bold')"> <xsl:attribute name="font-weight">bold</xsl:attribute></xsl:if-->
 			
 			<xsl:choose>
               <xsl:when test="$col/@align='center'"> <xsl:attribute name="text-align">center</xsl:attribute></xsl:when>
@@ -633,7 +657,7 @@
 
                 <fo:table-row height='from-parent(height)'>
                   <!-- Доп. проверяющий -->
-				  <fo:table-cell border-width="0.5mm" border-style="solid" number-columns-spanned="2"><fo:block><xsl:if test="not($AddCheckerPost = ' ')"><xsl:value-of select="$AddCheckerPost"/></xsl:if></fo:block></fo:table-cell>
+				  <fo:table-cell border-width="0.5mm" border-style="solid" number-columns-spanned="2"><fo:block><xsl:value-of select="$AddCheckerPost"/></fo:block></fo:table-cell>
                   <!-- Spanned cells number-columns-spanned="2" -->
                   <fo:table-cell border-width="0.5mm" border-style="solid"><fo:block font-size="2.5mm"><xsl:value-of select="$AddChecker"/></fo:block></fo:table-cell>
                   <fo:table-cell border-width="0.5mm" border-style="solid"><fo:block/></fo:table-cell>

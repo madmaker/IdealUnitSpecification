@@ -77,9 +77,9 @@
            <!--fo:block-container border-color="black" border-right-style="solid" border-right="0.3mm" position="absolute" top="5mm" bottom="5mm" left="0mm" right="-15mm+0.15mm">
              <fo:block>TEXT</fo:block>
            </fo:block-container-->
-		   <fo:block-container position="absolute" top="5mm" bottom="5mm" left="5mm" right="0mm" reference-orientation="90">
+		   <fo:block-container position="absolute" top="5mm" bottom="178mm" left="0mm" right="0mm" reference-orientation="90">
 		     <!-- fo:block font-style="normal" font-size="2.18mm"><xsl:value-of select="root/Ip_data/@Ip_classification"/></fo:block -->
-			 <fo:block padding-top="-2mm" background-color="green" font-family="arial" text-align="center" font-style="normal" font-size="3mm">TEXT</fo:block>
+			 <fo:block padding-top="1mm" font-family="arial" text-align="center" font-style="normal" font-size="5mm"><xsl:value-of select="root/Izdelie_osnovnai_nadpis/@BASEDOC"/></fo:block>
 		   </fo:block-container>
            <fo:block-container position="absolute"  reference-orientation="90"  top="5mm" left="8mm" height="12mm" width="114mm">
                 <xsl:call-template name="Add_minor_stamp">
@@ -332,14 +332,14 @@
                   <xsl:with-param name="cell_width">6mm</xsl:with-param>          
                 </xsl:call-template>
           </fo:table-cell>
-          <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" font-size="3.48mm">
+          <fo:table-cell border-width='from-parent(border-width)' border-style="none" wrap-option="no-wrap" font-size="3.48mm">
                 <xsl:call-template name="Occurrence-attrs">
                   <xsl:with-param name="col" select="Col_2"/>
                   <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_2"/></xsl:with-param>
                   <xsl:with-param name="cell_width">6mm</xsl:with-param>
                 </xsl:call-template>
           </fo:table-cell>
-          <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap">
+          <fo:table-cell border-width='from-parent(border-width)' border-style="none" wrap-option="no-wrap">
                 <xsl:call-template name="Occurrence-attrs">
                   <xsl:with-param name="col" select="Col_3"/>
                   <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_3"/></xsl:with-param>
@@ -364,14 +364,14 @@
 				  </fo:table-cell>
 			  </xsl:when>
 			  <xsl:otherwise-->
-					<fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-start="2mm">
+					<fo:table-cell border-width='from-parent(border-width)' border-style="none" wrap-option="no-wrap" padding-start="2mm">
 						<xsl:call-template name="Occurrence-attrs">
 						  <xsl:with-param name="col" select="Col_4"/>
 						  <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_4"/></xsl:with-param>
 						  <xsl:with-param name="cell_width">70mm</xsl:with-param>
 						</xsl:call-template>
 				  </fo:table-cell>
-				  <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-start="2mm">
+				  <fo:table-cell border-width='from-parent(border-width)' border-style="none" wrap-option="no-wrap" padding-start="2mm">
 						<xsl:call-template name="Occurrence-attrs">
 						  <xsl:with-param name="col" select="Col_5"/>
 						  <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_5"/></xsl:with-param>
@@ -381,14 +381,14 @@
 			  <!--/xsl:otherwise>
 		  </xsl:choose-->
           <!--fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-end="1.5mm"-->
-		  <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap">
+		  <fo:table-cell border-width='from-parent(border-width)' border-style="none" wrap-option="no-wrap">
                 <xsl:call-template name="Occurrence-attrs">
                   <xsl:with-param name="col" select="Col_6"/>
                   <xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_6"/></xsl:with-param>
                   <xsl:with-param name="cell_width">10mm</xsl:with-param>
                 </xsl:call-template>
           </fo:table-cell>
-          <fo:table-cell border-width='from-parent(border-width)' border-style="solid" wrap-option="no-wrap" padding-start="1mm" font-size="3.48mm">
+          <fo:table-cell border-width='from-parent(border-width)' border-style="none" wrap-option="no-wrap" padding-start="1mm" font-size="3.48mm">
                 <xsl:call-template name="Occurrence-attrs">
                   <xsl:with-param name="col" select="Col_7"/>
                   <!--xsl:with-param name="max_letter_count"><xsl:value-of select=" $max_letter_col_7"/></xsl:with-param-->
@@ -406,6 +406,7 @@
   <xsl:param name="cell_width"/>
   
   <xsl:variable name="font" select="@font"/>
+  <xsl:variable name="unite" select="@unite"/>
   <xsl:variable name="mm">mm</xsl:variable>
   <!--xsl:variable name="cell_width_txt">  <xsl:value-of select="concat(substring($cell_width,0,string-length($cell_width)-1)-1.4,  $mm)"/> </xsl:variable-->
 
@@ -414,6 +415,14 @@
             <xsl:if test="contains($font,'bold')"> <xsl:attribute name="font-weight">bold</xsl:attribute></xsl:if>
 			<xsl:if test="contains($font,'italic')"> <xsl:attribute name="font-style">italic</xsl:attribute></xsl:if>
 			<xsl:if test="contains($col/@warning,'true')"> <xsl:attribute name="color">red</xsl:attribute></xsl:if>
+            
+			<xsl:if test="contains($unite,'true')">
+				<xsl:attribute name="background-color">white</xsl:attribute>
+				<xsl:attribute name="margin-top">0.15mm</xsl:attribute>
+				<xsl:attribute name="padding-bottom">-0.05mm</xsl:attribute>
+				<xsl:attribute name="padding-right">0.026cm</xsl:attribute>
+				<xsl:attribute name="padding-left">-6.772cm</xsl:attribute>
+			</xsl:if>
             
 			<!--xsl:if test="contains($font,'bold')"> <xsl:attribute name="font-weight">bold</xsl:attribute></xsl:if-->
 			
