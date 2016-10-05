@@ -143,6 +143,10 @@ public class Specification {
 	public void cleanUp(){
 		blockList.clear();
 		blockList = null;
+		topBOMLine = null;
+		xmlFile = null;
+		reportFile = null;
+		specificationItemRevision= null;
 		settings.cleanUp();
 	}
 }
