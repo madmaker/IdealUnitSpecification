@@ -1,7 +1,7 @@
 package ru.idealplm.utils.specification.methods;
 
-public interface PrepareMethod {
+public interface IDataReaderMethod {
 	
-	void prepareBlocks();
+	void readData();
 	
 }

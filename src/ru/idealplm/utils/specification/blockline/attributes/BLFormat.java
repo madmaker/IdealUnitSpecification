@@ -1,16 +1,17 @@
-package ru.idealplm.utils.specification;
+package ru.idealplm.utils.specification.blockline.attributes;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
+import ru.idealplm.utils.specification.SpecificationSettings;
 import ru.idealplm.utils.specification.Specification.FormField;
 
 public class BLFormat {
 	
 	public boolean exceedsLimit = false;
-	private ArrayList<String> docFormat = new ArrayList<String>();
+	private ArrayList<String> formatsList = new ArrayList<String>();
 
 	static class DocFormatComparator implements Comparator<String>{
 
@@ -38,26 +39,26 @@ public class BLFormat {
 		if(!format.equals("*)")){
 			if(format.length() > SpecificationSettings.columnLengths.get(FormField.FORMAT)-1) exceedsLimit = true;
 			for(String f : format.split(",")){
-				if(!containsFormat(f.trim())) docFormat.add(f.trim());
+				if(!containsFormat(f.trim())) formatsList.add(f.trim());
 			}
 		} else {
-			docFormat.add(format);
+			formatsList.add(format);
 		}
 	}
 	
 	public ArrayList<String> toStringList(){
-		return docFormat;
+		return formatsList;
 	}
 	
 	public boolean containsFormat(String format) {
-		boolean result = docFormat.contains(format);
+		boolean result = formatsList.contains(format);
 		return result;
 	}
 	
 	@Override
 	public String toString() {
-		Collections.sort(docFormat, new DocFormatComparator());
-		Iterator<String> it = docFormat.iterator();
+		Collections.sort(formatsList, new DocFormatComparator());
+		Iterator<String> it = formatsList.iterator();
 		StringBuilder sb = new StringBuilder();
 		if(exceedsLimit && it.hasNext()) sb.append("*) " + it.next() + (it.hasNext()?", ":""));
 		while(it.hasNext()){

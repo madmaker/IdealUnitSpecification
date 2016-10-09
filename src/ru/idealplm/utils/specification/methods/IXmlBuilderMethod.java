@@ -2,8 +2,8 @@ package ru.idealplm.utils.specification.methods;
 
 import java.io.File;
 
-public interface XmlBuilderMethod {
+public interface IXmlBuilderMethod {
 	
-	public File makeXmlFile();
+	public File buildXmlFile();
 	
 }

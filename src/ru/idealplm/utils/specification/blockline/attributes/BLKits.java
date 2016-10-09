@@ -1,4 +1,4 @@
-package ru.idealplm.utils.specification;
+package ru.idealplm.utils.specification.blockline.attributes;
 
 import java.util.ArrayList;
 

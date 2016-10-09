@@ -1,8 +1,9 @@
-package ru.idealplm.utils.specification;
+package ru.idealplm.utils.specification.blockline.attributes;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import ru.idealplm.utils.specification.SpecificationSettings;
 import ru.idealplm.utils.specification.Specification.FormField;
 
 public class BLZone {
