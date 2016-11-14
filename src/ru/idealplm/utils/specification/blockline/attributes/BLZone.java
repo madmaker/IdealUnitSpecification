@@ -9,7 +9,7 @@ import ru.idealplm.utils.specification.Specification.FormField;
 public class BLZone {
 	
 	public boolean exceedsLimit = false;
-	private ArrayList<String> docZone = new ArrayList<String>();
+	private ArrayList<String> docZone = new ArrayList<String>(1);
 	
 	public BLZone(String zone) {
 		if(zone.isEmpty()) return;

@@ -9,10 +9,10 @@ import ru.idealplm.utils.specification.util.LineUtil;
 
 public class BLRemark {
 	
-	private List<String> remark = new ArrayList<String>();
+	private List<String> remark = new ArrayList<String>(2);
 	
 	public BLRemark(){
-		remark = new ArrayList<String>();
+		remark = new ArrayList<String>(2);
 	}
 	
 	public BLRemark(String remark){

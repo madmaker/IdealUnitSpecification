@@ -22,7 +22,7 @@ public class BlockLineAttributes {
 		this.format = new BLFormat("");
 		this.zone = new BLZone("");
 		this.remark = new BLRemark("");
-		this.name = new ArrayList<String>();			
+		this.name = new ArrayList<String>(2);			
 	}
 	
 	public void setFormat(String format) {

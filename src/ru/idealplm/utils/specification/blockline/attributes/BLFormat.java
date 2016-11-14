@@ -11,7 +11,7 @@ import ru.idealplm.utils.specification.Specification.FormField;
 public class BLFormat {
 	
 	public boolean exceedsLimit = false;
-	private ArrayList<String> formatsList = new ArrayList<String>();
+	private ArrayList<String> formatsList = new ArrayList<String>(1);
 
 	static class DocFormatComparator implements Comparator<String>{
 
