@@ -7,6 +7,8 @@ import ru.idealplm.utils.specification.Specification.FormField;
 
 public class SpecificationSettings {
 	
+	public static HashMap<FormField, Double> columnLengths;
+
 	private static SpecificationSettings instance = null;
 	private static final Object lock = new Object();
 	private static boolean isInitialized = false;
@@ -15,12 +17,14 @@ public class SpecificationSettings {
 	private InputStream configStream = null;
 	private HashMap<String, String> stringProps;
 	private HashMap<String, Boolean> booleanProps;
-	public static HashMap<FormField, Double> columnLengths;
+	private String[] nonbreakableWords = {};
+	private String[] emptyValues = {};
 
 	private SpecificationSettings(){
 		stringProps = new HashMap<String, String>();
 		booleanProps = new HashMap<String, Boolean>();
 		columnLengths = new HashMap<FormField, Double>();
+		//nonbreakableWords = Specification.preferenceService.getStringArray(Specification.preferenceService.TC_preference_site, "M9_Spec_NonbreakableWords", emptyValues);
 	}
 	
 	public static SpecificationSettings getInstance() {
@@ -53,6 +57,10 @@ public class SpecificationSettings {
 	}
 	public double getColumnLength(FormField columnType){
 		return columnLengths.get(columnType);
+	}
+	
+	public String[] getNonbreakableWords(){
+		return nonbreakableWords;
 	}
 	
 	public void setTemplateStream(InputStream templateStream){

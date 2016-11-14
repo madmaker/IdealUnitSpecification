@@ -2,8 +2,8 @@ package ru.idealplm.utils.specification.methods;
 
 import java.io.File;
 
-public interface ReportBuilderMethod {
+public interface IReportBuilderMethod {
 
-	public File makeReportFile();
+	public File buildReportFile();
 	
 }

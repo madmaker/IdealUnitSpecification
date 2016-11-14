@@ -1,17 +1,18 @@
-package ru.idealplm.utils.specification;
+package ru.idealplm.utils.specification.blockline.attributes;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.idealplm.utils.specification.SpecificationSettings;
 import ru.idealplm.utils.specification.Specification.FormField;
 import ru.idealplm.utils.specification.util.LineUtil;
 
 public class BLRemark {
 	
-	private List<String> remark = new ArrayList<String>();
+	private List<String> remark = new ArrayList<String>(2);
 	
 	public BLRemark(){
-		remark = new ArrayList<String>();
+		remark = new ArrayList<String>(2);
 	}
 	
 	public BLRemark(String remark){
@@ -43,16 +44,11 @@ public class BLRemark {
 		for(String value:values){
 			insert(value);
 		}
-		//remark.addAll(values);
 	}
 	
 	public void insertAt(int i, String value){
 		remark.add(i, value);
 	}
-	
-	/*public void insertAt(int i, ArrayList<String> values){
-		remark.addAll(i, values);
-	}*/
 	
 	public int size(){
 		return remark.size();

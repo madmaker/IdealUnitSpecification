@@ -1,6 +1,6 @@
 package ru.idealplm.utils.specification.comparators;
 
-import ru.idealplm.utils.specification.BlockLine;
+import ru.idealplm.utils.specification.blockline.BlockLine;
 import ru.idealplm.utils.specification.BlockLineComparator;
 import ru.idealplm.utils.specification.Specification;
 

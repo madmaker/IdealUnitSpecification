@@ -14,6 +14,8 @@ Require-Bundle: com.teamcenter.rac.kernel;bundle-version="10000.1.0",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: ru.idealplm.utils.common,
  ru.idealplm.utils.specification,
+ ru.idealplm.utils.specification.blockline,
+ ru.idealplm.utils.specification.blockline.attributes,
  ru.idealplm.utils.specification.comparators,
  ru.idealplm.utils.specification.methods,
  ru.idealplm.utils.specification.util

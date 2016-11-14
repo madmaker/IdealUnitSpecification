@@ -13,7 +13,7 @@ public class LineUtil {
 	
 	static Font font = new Font("Arial", Font.PLAIN, 14);
 	static String[] emptyValues = {};
-	static String[] nonbreakableWords = Specification.preferenceService.getStringArray(Specification.preferenceService.TC_preference_site, "M9_Spec_NonbreakableWords", emptyValues);
+	static String[] nonbreakableWords = Specification.settings.getNonbreakableWords();
 	static String[] nonbreakablePlaneArray;
 	
 	static {

@@ -15,8 +15,6 @@ public class GeneralUtils {
 			if (tcDate.length() > 0) {
 				String stDate = tcDate.substring(0, 2);
 				out = stDate;
-//				int date = Integer.parseInt(stDate);
-//				out = String.valueOf(date);
 
 				String stMo = tcDate.substring(3, 6).toUpperCase();
 

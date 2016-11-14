@@ -19,7 +19,7 @@ public class BlockList extends LinkedList<Block>{
 	public Block getBlock(BlockContentType blockContentType, BlockType blockType){
 		synchronized(lock) {
 			for(Block block : this){
-				if(block.getBlockContentType()==blockContentType && block.getBlockType()==blockType) return block;
+				if(block.blockContentType==blockContentType && block.blockType==blockType) return block;
 			}
 			return null;
 		}

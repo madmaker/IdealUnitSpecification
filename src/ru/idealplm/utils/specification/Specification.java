@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import ru.idealplm.utils.specification.methods.AttachMethod;
-import ru.idealplm.utils.specification.methods.DataReaderMethod;
-import ru.idealplm.utils.specification.methods.PrepareMethod;
-import ru.idealplm.utils.specification.methods.ReportBuilderMethod;
-import ru.idealplm.utils.specification.methods.ValidateMethod;
-import ru.idealplm.utils.specification.methods.XmlBuilderMethod;
+import ru.idealplm.utils.specification.methods.IAttachMethod;
+import ru.idealplm.utils.specification.methods.IDataReaderMethod;
+import ru.idealplm.utils.specification.methods.IPrepareMethod;
+import ru.idealplm.utils.specification.methods.IReportBuilderMethod;
+import ru.idealplm.utils.specification.methods.IValidateMethod;
+import ru.idealplm.utils.specification.methods.IXmlBuilderMethod;
 
 import com.teamcenter.rac.aifrcp.AIFUtility;
 import com.teamcenter.rac.kernel.TCComponentBOMLine;
@@ -34,12 +34,12 @@ public class Specification {
 	private File xmlFile = null;
 	private File reportFile = null;
 	
-	private ValidateMethod validateMethod;
-	private DataReaderMethod dataReaderMethod;
-	private PrepareMethod prepareMethod;
-	private XmlBuilderMethod xmlBuilderMethod;
-	private ReportBuilderMethod reportBuilderMethod;
-	private AttachMethod attachMethod;
+	private IValidateMethod validateMethod;
+	private IDataReaderMethod dataReaderMethod;
+	private IPrepareMethod prepareMethod;
+	private IXmlBuilderMethod xmlBuilderMethod;
+	private IReportBuilderMethod reportBuilderMethod;
+	private IAttachMethod attachMethod;
 	
 	public static ErrorList errorList;
 	
@@ -72,7 +72,7 @@ public class Specification {
 		return instance;
     }
     
-    public void init(TCComponentBOMLine topBOMLine, ValidateMethod validateMethod, DataReaderMethod dataReaderMethod, PrepareMethod prepareMethod, XmlBuilderMethod xmlBuilderMethod, ReportBuilderMethod reportBuilderMethod, AttachMethod attachMethod){
+    public void init(TCComponentBOMLine topBOMLine, IValidateMethod validateMethod, IDataReaderMethod dataReaderMethod, IPrepareMethod prepareMethod, IXmlBuilderMethod xmlBuilderMethod, IReportBuilderMethod reportBuilderMethod, IAttachMethod attachMethod){
     	this.topBOMLine = topBOMLine;
     	this.validateMethod = validateMethod;
     	this.dataReaderMethod = dataReaderMethod;
@@ -93,19 +93,19 @@ public class Specification {
 	}
 	
 	public boolean validate(){
-		return validateMethod.validate();
+		return validateMethod.validateData();
 	}
 	
 	public void prepareBlocks(){
-		prepareMethod.prepareBlocks();
+		prepareMethod.prepareData();
 	}
 	
 	public void readBOMData(){
-		dataReaderMethod.readBOMData();
+		dataReaderMethod.readData();
 	}
 	
 	public void makeXmlFile(){
-		xmlFile = xmlBuilderMethod.makeXmlFile();
+		xmlFile = xmlBuilderMethod.buildXmlFile();
 	}
 	
 	public File getXmlFile(){
@@ -113,7 +113,7 @@ public class Specification {
 	}
 	
 	public void makeReportFile(){
-		reportFile = reportBuilderMethod.makeReportFile();
+		reportFile = reportBuilderMethod.buildReportFile();
 	}
 	
 	public File getReportFile(){
@@ -121,7 +121,7 @@ public class Specification {
 	}
 	
 	public void putInTeamcenter(){
-		attachMethod.putInTeamcenter();
+		attachMethod.attachReportFile();
 	}
 	
 	public TCComponentBOMLine getTopBOMLine(){
