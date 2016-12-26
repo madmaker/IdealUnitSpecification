@@ -20,16 +20,16 @@ import ru.idealplm.utils.specification.util.LineUtil;
 
 public class BlockLine {
 	
-	public BlockLineAttributes attributes;
-	public BlockContentType blockContentType;
-	public BlockType blockType;
+	public BlockLineAttributes attributes = null;
+	public BlockContentType blockContentType = null;
+	public BlockType blockType = null;
 	public boolean isSubstitute = false;
 	public boolean isRenumerizable = true;
 	public int lineHeight = 1;
 	public String uid = "";
 	
-	public ArrayList<BlockLine> substituteBlockLines;
-	public ArrayList<TCComponentBOMLine> refBOMLines;
+	public ArrayList<BlockLine> substituteBlockLines = null;
+	public ArrayList<TCComponentBOMLine> refBOMLines = null;
 	public ArrayList<BlockLine> attachedLines = new ArrayList<BlockLine>();
 	
 	private HashMap<String, String> props;
@@ -50,12 +50,12 @@ public class BlockLine {
 	}
 	
 	public void addSubstituteBlockLine(BlockLine blockLine){
-		if(this.substituteBlockLines==null) substituteBlockLines = new ArrayList<BlockLine>(2);
+		if(this.substituteBlockLines==null) substituteBlockLines = new ArrayList<BlockLine>();
 		substituteBlockLines.add(blockLine);
 	}
 	
 	public void addRefBOMLine(TCComponentBOMLine bomLine){
-		if(this.refBOMLines==null) refBOMLines = new ArrayList<TCComponentBOMLine>(2);
+		if(this.refBOMLines==null) refBOMLines = new ArrayList<TCComponentBOMLine>();
 		refBOMLines.add(bomLine);
 	}
 	

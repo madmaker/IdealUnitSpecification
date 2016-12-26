@@ -10,9 +10,9 @@ public class BLKits {
 	private double totalQuantity;
 
 	public BLKits(){
-		ids = new ArrayList<String>(1);
-		names = new ArrayList<String>(1);
-		qtys = new ArrayList<Double>(1);
+		ids = new ArrayList<String>();
+		names = new ArrayList<String>();
+		qtys = new ArrayList<Double>();
 		totalQuantity = 0;
 	}
 	

@@ -44,15 +44,15 @@ public class Block {
 		}
 	}
 
-	public ArrayList<BlockLine> getListOfLines() {
+	public synchronized ArrayList<BlockLine> getListOfLines() {
 		return blockLines;
 	}
 	
-	public int size(){
+	public synchronized int size(){
 		return blockLines.size();
 	}
 	
-	public void addBlockLine(String uid, BlockLine blockLine){
+	public synchronized void addBlockLine(String uid, BlockLine blockLine){
 		int pos = -1;
 		if((pos = blockLineUIDs.indexOf(uid))!=-1){
 			if(blockLine.isSubstitute!=blockLines.get(pos).isSubstitute){
