@@ -18,13 +18,13 @@ public class SpecificationSettings {
 	private HashMap<String, String> stringProps;
 	private HashMap<String, Boolean> booleanProps;
 	private String[] nonbreakableWords = {};
-	private String[] emptyValues = {};
+	//private String[] emptyValues = {};
 
 	private SpecificationSettings(){
 		stringProps = new HashMap<String, String>();
 		booleanProps = new HashMap<String, Boolean>();
 		columnLengths = new HashMap<FormField, Double>();
-		//nonbreakableWords = Specification.preferenceService.getStringArray(Specification.preferenceService.TC_preference_site, "M9_Spec_NonbreakableWords", emptyValues);
+		//nonbreakableWords = Specification.preferenceService.getStringArray(Specification.preferenceService.TC_preference_site, "Oc9_Spec_NonbreakableWords", emptyValues);
 	}
 	
 	public static SpecificationSettings getInstance() {
@@ -57,6 +57,10 @@ public class SpecificationSettings {
 	}
 	public double getColumnLength(FormField columnType){
 		return columnLengths.get(columnType);
+	}
+	
+	public void setNonbreakableWords(String[] nonbreakableWords){
+		this.nonbreakableWords = nonbreakableWords;
 	}
 	
 	public String[] getNonbreakableWords(){
