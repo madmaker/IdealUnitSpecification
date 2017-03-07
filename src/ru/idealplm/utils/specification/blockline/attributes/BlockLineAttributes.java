@@ -1,5 +1,6 @@
 package ru.idealplm.utils.specification.blockline.attributes;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,7 +17,7 @@ public class BlockLineAttributes {
 	private String position = "";
 	private String id = "";
 	private ArrayList<String> name = null;
-	private float quantity = 0f;
+	private BigDecimal quantity = new BigDecimal(0);
 	
 	public BlockLineAttributes(){
 		this.format = new BLFormat("");
@@ -72,11 +73,11 @@ public class BlockLineAttributes {
 	}
 	
 	public void setQuantity(String quantity) {
-		this.quantity = "".equals(quantity) ? 1 : Float.parseFloat(quantity);
+		this.quantity = this.quantity.add(new BigDecimal("".equals(quantity) ? "1" : quantity));
 	}
 	
 	public void addQuantity(String quantity){
-		this.quantity = this.quantity + ("".equals(quantity) ? 1 : Float.parseFloat(quantity));
+		this.quantity = this.quantity.add(new BigDecimal("".equals(quantity) ? "1" : quantity));
 	}
 	
 	public BLFormat getFormat() {
@@ -94,7 +95,7 @@ public class BlockLineAttributes {
 	public ArrayList<String> getName() {
 		return name;
 	}
-	public float getQuantity() {
+	public BigDecimal getQuantity() {
 		return quantity;
 	}
 	public BLRemark getRemark() {
@@ -109,7 +110,7 @@ public class BlockLineAttributes {
 			case POSITION: return position;
 			case ID: return id;
 			case NAME: return Arrays.toString(name.toArray());
-			case QUANTITY: return quantity==0?" ":(quantity%1==0) ? Integer.toString((int)quantity) : Float.toString(quantity);
+			case QUANTITY: return quantity.compareTo(new BigDecimal(0))==0?" ":quantity.stripTrailingZeros().toString();
 			case REMARK: return remark.toString();
 		}
 		return "";
