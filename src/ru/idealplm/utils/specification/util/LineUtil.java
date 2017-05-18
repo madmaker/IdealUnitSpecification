@@ -11,7 +11,7 @@ import ru.idealplm.utils.specification.Specification;
 
 public class LineUtil {
 	
-	static Font font = new Font("Arial", Font.PLAIN, 14);
+	static Font font = new Font("GOST type A Italic", Font.PLAIN, 14);
 	static String[] emptyValues = {};
 	static String[] nonbreakableWords = Specification.settings.getNonbreakableWords();
 	static String[] nonbreakablePlaneArray;
