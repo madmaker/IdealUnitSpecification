@@ -109,7 +109,7 @@ public class BlockLineAttributes {
 			case POSITION: return position;
 			case ID: return id;
 			case NAME: return Arrays.toString(name.toArray());
-			case QUANTITY: return quantity==0?" ":(quantity%1==0) ? Integer.toString((int)quantity) : Float.toString(quantity);
+			case QUANTITY: return quantity==0?" ":(quantity%1==0) ? Integer.toString((int)quantity) : String.format("%f", quantity);
 			case REMARK: return remark.toString();
 		}
 		return "";
